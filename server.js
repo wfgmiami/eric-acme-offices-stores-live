@@ -10,6 +10,7 @@ app.set('views', __dirname + '/views');
 swig.setDefaults( { cache: false });
 
 app.use('/vendors', express.static(__dirname + '/node_modules'))
+app.use('/public', express.static(__dirname + '/public'))
 //app.use(morgan(dev));
 //app.use(bodyParser.urlencoded( { extended: false }))
 //app.use(methodOverride('_method'));

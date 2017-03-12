@@ -3,6 +3,8 @@
 <head>
   <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.css">
   <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="/vendors/jquery/dist/jquery.js"></script>
+  <script src="/public/app.js" defer></script>
 </head>
 
 <body>
@@ -10,29 +12,34 @@
     <h1>Acme Offices Stores Demo</h1>
     <div class="row">
       <div class="col-xs-6">
-        <form class="well">
-          <div class="form-group">
-            <select class="form-control">
-              {% for office in offices %}
-                <option value='{{ office.id }}'>{{ office.name }} - {{ office.place.name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-          <button class="btn btn-primary">Add Office Visit</button>
-        </form>
+        <div id="visitPickers">
+          <form class="well">
+            <div class="form-group">
+              <select class="form-control">
+                {% for office in offices %}
+                  <option value='{{ office.id }}'>{{ office.name }} - {{ office.place.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <button class="btn btn-primary">Add Office Visit</button>
+          </form>
 
-        <form class="well">
-          <div class="form-group">
-            <select class="form-control">
-              {% for store in stores %}
-              <option value='{{ store.id }}'>{{ store.name }} - {{ store.place.name }}</option>
+          <form class="well">
+            <div class="form-group">
+              <select class="form-control">
+                {% for store in stores %}
+                <option value='{{ store.id }}'>{{ store.name }} - {{ store.place.name }}</option>
 
-              {% endfor %}
-            </select>
-          </div>
-          <button class="btn btn-primary">Add Store Visit</button>
-        </form>
-
+                {% endfor %}
+              </select>
+            </div>
+            <button class="btn btn-primary">Add Store Visit</button>
+          </form>
+        </div>
+        <div id="dayPicker">
+        </div>
+        <div id="dayView">
+        </div>
       </div>
 
       <div class="col-xs-6">
@@ -45,6 +52,7 @@
 
   <script>
     var offices = {{ offices | raw | json }}
+    var stores = {{ stores | raw | json }}
   </script>
 
   <script>

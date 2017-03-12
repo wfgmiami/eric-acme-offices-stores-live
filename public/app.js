@@ -81,6 +81,12 @@ function onAddStore(store){
   renderDayView();
 }
 
+function onAddDay(){
+  state.days.push({});
+  state.idx = state.days.length - 1;
+  renderDayPicker();
+}
+
 function renderDayPicker(){
   DayPicker('#dayPicker', state.days, state.idx, onSelectDay)
   renderDayView();
@@ -104,7 +110,7 @@ function VisitPickers(containerId, onAddOffice, onAddStore){
     var item = list.filter(function(item){
       return item.id === id*1;
     })[0]
-console.log(item);
+
     if(mode === 'offices'){
       onAddOffice(item)
     }
